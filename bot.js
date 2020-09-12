@@ -88,13 +88,12 @@ const controller = new Botkit({
 });
 
 // Create Botkit controller
-if (process.env.CMS_URI) {
-    var controller = Botkit.platform({
-        studio_command_uri: process.env.CMS_URI,
-        studio_token: process.env.CMS_TOKEN
-        });
-};
+var cms = require('botkit-cms')();
+cms.useLocalStudio(controller);
 
+cms.loadScriptsFromFile(__dirname + '/scripts.json').catch(function(err) {
+  console.error('Error loading scripts', err);
+});
 
 // Once the bot has booted up its internal services, you can use them to do stuff.
 const path = require('path');
