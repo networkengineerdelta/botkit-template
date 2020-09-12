@@ -1,0 +1,198 @@
+[
+  {
+    "id": "0-0-0-0-0",
+    "command": "hello",
+    "description": "Respond when a human says hello!",
+    "script": [
+      {
+        "topic": "default",
+        "script": [
+          {
+            "text": [
+              "Hello Human!",
+              "How do you do?",
+              "Nice to meet you Human.",
+              "Hi!",
+              "How’s it going?",
+              "Hey!",
+              "Hey there!",
+              "Howdy!",
+              "G`day human!",
+              "Salut!",
+              "Ciao!",
+              "Hola!",
+              "Shalom!"
+            ]
+          },
+          {
+            "action": "complete"
+          }
+        ]
+      }
+    ],
+    "triggers": [
+      {
+        "pattern": "hell.*",
+        "type": "regexp",
+        "id": "495"
+      },
+      {
+        "type": "string",
+        "pattern": "hello"
+      },
+      {
+        "type": "string",
+        "pattern": "hey"
+      },
+      {
+        "type": "string",
+        "pattern": "hi"
+      },
+      {
+        "type": "string",
+        "pattern": "howdy"
+      }
+    ],
+    "variables": [],
+    "modified": "2018-12-12T15:23:41.416Z",
+    "name": "hello"
+  },
+  {
+    "command": "debug",
+    "botId": 1,
+    "description": "Ask for what debugs to run in a certain CUBE Voice Gateway debugging scenario.",
+    "triggers": [
+      {
+        "pattern": "Debug",
+        "type": "string",
+        "id": 487
+      },
+      {
+        "pattern": "DEBUG",
+        "type": "string",
+        "id": 375
+      },
+      {
+        "type": "string",
+        "pattern": "debug"
+      }
+    ],
+    "variables": [
+      {
+        "name": "question_1",
+        "type": "string"
+      },
+      {
+        "name": "question_2",
+        "type": "string"
+      },
+      {
+        "name": "question_3",
+        "type": "string"
+      }
+    ],
+    "script": [
+      {
+        "topic": "default",
+        "script": [
+          {
+            "text": [
+              "What would you like to debug? Please respond with the number\n\n1. sip-to-sip\n2. sip-to-pri\n3. sip-to-analog\nexit",
+              "..."
+            ],
+            "collect": {
+              "key": "question_1",
+              "options": [
+                {
+                  "default": true,
+                  "pattern": "default",
+                  "action": "repeat"
+                },
+                {
+                  "pattern": "1",
+                  "type": "string",
+                  "action": "sip-to-sip"
+                },
+                {
+                  "pattern": "2",
+                  "type": "string",
+                  "action": "sip-to-pri"
+                },
+                {
+                  "pattern": "2",
+                  "type": "string",
+                  "action": "sip-to-analog"
+                },
+                {
+                  "pattern": "exit",
+                  "type": "string",
+                  "action": "complete"
+                }
+              ],
+              "multiple": false
+            }
+          },
+          {
+            "action": "complete"
+          }
+        ]
+      },
+      {
+        "topic": "on_timeout",
+        "script": [
+          {
+            "text": [
+              "Looks like you got distracted. We can continue later."
+            ]
+          },
+          {
+            "action": "timeout"
+          }
+        ]
+      },
+      {
+        "topic": "sip-to-sip",
+        "script": [
+          {
+            "text": [
+              "This is sip-to-sip"
+            ],
+            "meta": []
+          },
+          {
+            "action": "complete"
+          }
+        ]
+      },
+      {
+        "topic": "sip-to-pri",
+        "script": [
+          {
+            "text": [
+              "This is sip-to-pri"
+            ]
+          },
+          {
+            "action": "complete"
+          }
+        ]
+      },
+      {
+        "topic": "sip-to-analog",
+        "script": [
+          {
+            "text": [
+              "This is sip-to-analog"
+            ]
+          },
+          {
+            "action": "complete"
+          }
+        ]
+      }
+    ],
+    "id": "5440c772-2bfc-4a6a-9031-bb11f15c797a",
+    "modified": "2020-09-12T20:56:07.390Z",
+    "name": "debug"
+  }
+]
