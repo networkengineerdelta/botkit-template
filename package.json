@@ -15,7 +15,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "postinstall": "cp botkit_mutagen.js /app/node_modules/botkit-cms/src/botkit_mutagen.js",
+    "postinstall": "cp botkit_mutagen.js ./node_modules/botkit-cms/src/botkit_mutagen.js",
     "start": "node bot.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
