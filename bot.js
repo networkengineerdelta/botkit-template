@@ -88,14 +88,13 @@ const controller = new Botkit({
 });
 
 // Create Botkit controller
-
 if (process.env.CMS_URI) {
-    const { BotkitCMSHelper } = require('botkit-plugin-cms');
-    controller.usePlugin(new BotkitCMSHelper({
-        uri: process.env.CMS_URI,
-        token: process.env.CMS_TOKEN
-    }));
+    var controller = Botkit.platform({
+        studio_command_uri: process.env.CMS_URI,
+        studio_token: process.env.CMS_TOKEN
+        });
 };
+
 
 // Once the bot has booted up its internal services, you can use them to do stuff.
 const path = require('path');
